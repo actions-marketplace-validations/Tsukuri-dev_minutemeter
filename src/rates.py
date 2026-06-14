@@ -1,10 +1,14 @@
 """GitHub Actions per-minute runner rates (USD).
 
 Source: GitHub official pricing, observed 2026-06-14.
-  - self-hosted cloud platform charge: $0.002/min (effective 2026-03-01)
   - hosted standard: Linux 2c $0.006, Windows 2c $0.010, macOS $0.062
-  - larger runners: see LARGER_* tables
-Evidence (evidence_log claim_ids): 0efbde3d160f, 539e5a1a4dc9, 8abe2b558752.
+    (Jan 2026 list prices, already inclusive of the platform charge)
+  - larger runners: see LARGER table
+  - self-hosted: currently FREE. GitHub announced a $0.002/min self-hosted
+    "cloud platform charge" (Dec 2025) but SHELVED it within a week after
+    backlash. It is not in effect. Override via SELF_HOSTED if you want to
+    model a hypothetical/internal self-hosted cost.
+Evidence (evidence_log claim_ids): 539e5a1a4dc9, 8abe2b558752.
 
 These are constants that GitHub may change; keep them in one place so a price
 revision is a single-file edit. Prices are USD per billable minute.
@@ -17,8 +21,9 @@ STANDARD = {
     "macos": 0.062,
 }
 
-# Self-hosted runners: flat per-minute cloud platform charge (from 2026-03-01).
-SELF_HOSTED = 0.002
+# Self-hosted runners: currently free (the announced charge was shelved).
+# Set to a non-zero value to model a hypothetical/internal self-hosted cost.
+SELF_HOSTED = 0.0
 
 # Larger GitHub-hosted runners, by OS and core count (x64).
 LARGER = {

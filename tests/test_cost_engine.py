@@ -42,7 +42,7 @@ def test_rate_table():
     assert rates.rate_per_minute("linux") == 0.006
     assert rates.rate_per_minute("windows") == 0.010
     assert rates.rate_per_minute("macos") == 0.062
-    assert rates.rate_per_minute("linux", self_hosted=True) == 0.002
+    assert rates.rate_per_minute("linux", self_hosted=True) == 0.0  # charge shelved
     assert rates.rate_per_minute("linux", cores=8) == 0.022
 
 
@@ -58,7 +58,7 @@ def test_compute_job_cost_linux():
     assert r["cost"] == round(5 * 0.006, 4)  # 0.03
 
 
-def test_compute_job_cost_self_hosted_rounds_up():
+def test_compute_job_cost_self_hosted_free_but_counts_minutes():
     job = {
         "name": "deploy",
         "labels": ["self-hosted", "linux"],
@@ -67,8 +67,8 @@ def test_compute_job_cost_self_hosted_rounds_up():
     }
     r = mm.compute_job_cost(job)
     assert r["self_hosted"] is True
-    assert r["minutes"] == 5
-    assert r["cost"] == round(5 * 0.002, 4)  # 0.01
+    assert r["minutes"] == 5          # minutes still tracked
+    assert r["cost"] == 0.0           # self-hosted charge shelved -> free
 
 
 def test_compute_run_sorts_and_totals():

@@ -133,8 +133,9 @@ def render_markdown(result, repo, run_id, budget_usd=None, top_n=15):
         lines.append(f"| {r['name']} | {runner} | {r['minutes']} | ${r['cost']:.4f} |")
     if len(rows) > top_n:
         lines.append(f"| … +{len(rows) - top_n} more | | | |")
-    lines += ["", "<sub>Rates: GitHub list price (self-hosted $0.002/min from 2026-03-01). "
-              "Billed per started minute. Gross of included free minutes.</sub>"]
+    lines += ["", "<sub>GitHub list prices, billed per started minute, gross of included "
+              "free minutes. Self-hosted shown free (the announced charge was shelved). "
+              "Heads up: Copilot code review also consumes Actions minutes from this pool.</sub>"]
     return "\n".join(lines)
 
 

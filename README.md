@@ -4,10 +4,10 @@
 cost to **each job** in a workflow run and posts the breakdown as a PR comment and
 job summary — so you catch expensive jobs *before* the bill arrives.
 
-Built for the 2026 pricing change: **self-hosted runners now cost $0.002/min**
-(from 2026-03-01) and most teams have no per-job visibility into Actions **cost**,
-**billing**, or **spend**. MinuteMeter runs inside your CI — no external dashboard,
-no sign-up, no data leaves GitHub.
+Since **June 1, 2026, Copilot code review consumes the same Actions minutes** your CI
+already burns — so that shared minute pool drains faster and overages creep in, while
+most teams have **no per-job visibility** into Actions **cost**, **billing**, or **spend**.
+MinuteMeter runs inside your CI — no external dashboard, no sign-up, no data leaves GitHub.
 
 ## Quick start
 
@@ -61,8 +61,9 @@ That's it. On the next run you'll get a comment like:
 - Runner type is detected from job labels (`ubuntu-latest`, `windows-latest`,
   `macos-latest`, `self-hosted`, larger `*-N-cores` runners).
 - Rates are GitHub's published list prices (Linux $0.006, Windows $0.010,
-  macOS $0.062, self-hosted $0.002 per minute). Figures are **gross of included
-  free minutes** — they show list cost, not your post-allowance invoice.
+  macOS $0.062 per minute). Self-hosted runners are shown **free** — GitHub
+  announced a $0.002/min self-hosted charge in Dec 2025 but shelved it. Figures
+  are **gross of included free minutes** — list cost, not your post-allowance invoice.
 
 MinuteMeter never fails your CI: API or permission errors degrade to a warning.
 

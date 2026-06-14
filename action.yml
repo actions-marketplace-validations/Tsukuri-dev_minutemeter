@@ -1,5 +1,5 @@
 name: "MinuteMeter — Actions Cost"
-description: "Attribute a USD cost to each job in a workflow run and comment the breakdown on the PR. Budget alerts. cost / billing / spend."
+description: "See which jobs burn your GitHub Actions minutes and what they cost — per-job cost commented on every PR, with budget alerts. cost / billing / spend / minutes."
 author: "MinuteMeter"
 branding:
   icon: "dollar-sign"
