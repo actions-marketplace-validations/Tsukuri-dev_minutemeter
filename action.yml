@@ -1,0 +1,35 @@
+name: "MinuteMeter — Actions Cost"
+description: "Attribute a USD cost to each job in a workflow run and comment the breakdown on the PR. Budget alerts. cost / billing / spend."
+author: "MinuteMeter"
+branding:
+  icon: "dollar-sign"
+  color: "green"
+
+inputs:
+  github_token:
+    description: "Token with actions:read and pull-requests:write. Defaults to the workflow token."
+    required: false
+    default: ${{ github.token }}
+  budget_usd:
+    description: "Optional per-run budget in USD. Flags the run when its cost exceeds this."
+    required: false
+    default: ""
+  run_id:
+    description: "Workflow run id to analyze. Defaults to the triggering run (workflow_run) or the current run."
+    required: false
+    default: ""
+  pr_number:
+    description: "PR number to comment on. Auto-detected from the event when omitted."
+    required: false
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - shell: bash
+      run: python3 "$GITHUB_ACTION_PATH/src/minutemeter.py"
+      env:
+        INPUT_GITHUB_TOKEN: ${{ inputs.github_token }}
+        INPUT_BUDGET_USD: ${{ inputs.budget_usd }}
+        INPUT_RUN_ID: ${{ inputs.run_id }}
+        INPUT_PR_NUMBER: ${{ inputs.pr_number }}
