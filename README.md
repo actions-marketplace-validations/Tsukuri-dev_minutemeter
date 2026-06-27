@@ -10,7 +10,7 @@ most teams have **no per-job visibility** into Actions **cost**, **billing**, or
 MinuteMeter runs inside your CI — no external dashboard, no sign-up, no data leaves GitHub.
 
 **[Marketplace](https://github.com/marketplace/actions/minutemeter-actions-cost)** ·
-**[Landing page](https://fukushima62315-art.github.io/minutemeter-site/)** ·
+**[Landing page](https://tsukuri-dev.github.io/minutemeter-site/)** ·
 keywords: GitHub Actions cost, Actions minutes, CI billing, spend, budget
 
 ## Quick start
